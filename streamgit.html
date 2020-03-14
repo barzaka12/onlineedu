@@ -1,0 +1,28 @@
+<!-- Made by barzaka12 -->
+<!DOCTYPE html>
+<html>
+<body>
+    <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+    <!-- Or if you want a more recent canary version -->
+    <!-- <script src="https://cdn.jsdelivr.net/npm/hls.js@canary"></script> -->
+    <video id="video" width="1280" height="720"></video>
+    <script>
+      var video = document.getElementById('video');
+      if (Hls.isSupported()) {
+        var hls = new Hls();
+        hls.loadSource('Your stream link HERE');
+        hls.attachMedia(video);
+        hls.on(Hls.Events.MANIFEST_PARSED, function() {
+          video.play();
+        });
+      }
+      else if (video.canPlayType('application/vnd.apple.mpegurl')) {
+        video.src = 'Your stream link HERE';
+        video.addEventListener('loadedmetadata', function() {
+          video.play();
+        });
+      }
+    </script>
+    <iframe src="Your IRC embed HERE" width="647" height="400" align="rigth"></iframe>
+</body>
+</html>
